@@ -371,8 +371,8 @@ const library = [
     "title": "working backwards",
     "author": "Colin Bryar & Bill Carr",
     "category": "Business",
-    "status": null,
-    "rating": null,
+    "status": "",
+    "rating": 0,
     "cover": "/books/working-backwards.jpg"
   },
   {
@@ -380,8 +380,8 @@ const library = [
     "title": "How to Read People Like a Book",
     "author": "James W. Williams",
     "category": "Psychology",
-    "status": null,
-    "rating": null,
+    "status": "",
+    "rating": 0,
     "cover": "/books/how-to-read-people-like-a-book.jpg"
   },
   {
@@ -389,8 +389,8 @@ const library = [
     "title": "The Power of Self-Discipline",
     "author": "Peter Hollins",
     "category": "Personal Development",
-    "status": null,
-    "rating": null,
+    "status": "",
+    "rating": 0,
     "cover": "/books/the-power-of-self-discipline.jpg"
   }
 ];
