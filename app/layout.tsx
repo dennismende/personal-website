@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { Linkedin, Github, Youtube } from "lucide-react"; // Imported icons
+import { Analytics } from '@vercel/analytics/next';
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         {/* Full Width Main Content */}
         <main className="flex-grow pt-32 px-6 md:px-12 w-full max-w-screen-2xl mx-auto">
           {children}
+          <Analytics />
         </main>
 
         {/* Footer Section */}
