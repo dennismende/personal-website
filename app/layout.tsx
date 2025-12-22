@@ -6,6 +6,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { Linkedin, Github, Youtube } from "lucide-react"; // Imported icons
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
         <main className="flex-grow pt-32 px-6 md:px-12 w-full max-w-screen-2xl mx-auto">
           {children}
           <Analytics />
+          <SpeedInsights />
         </main>
 
         {/* Footer Section */}
