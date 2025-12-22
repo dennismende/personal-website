@@ -1,65 +1,242 @@
+import Link from "next/link";
 import Image from "next/image";
+import { createClient } from "next-sanity";
+import imageUrlBuilder from "@sanity/image-url";
+import { 
+  ArrowRight, 
+  Users,
+  Compass, 
+  Globe, 
+  TrendingUp,
+  Linkedin, 
+  Github 
+} from "lucide-react";
 
-export default function Home() {
+// --- 1. SANITY SETUP ---
+const client = createClient({
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: "production",
+  apiVersion: "2024-01-01",
+  useCdn: false, // False ensures you always see the latest draft/published content
+});
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+  return builder.image(source);
+}
+
+// Interface for the fetched data
+interface Post {
+  title: string;
+  slug: { current: string };
+  publishedAt: string;
+  mainImage: any;
+  categories: { title: string }[];
+  excerpt: string;
+}
+
+export default async function HomePage() {
+
+  // --- 2. FETCH LATEST 3 POSTS ---
+  const posts = await client.fetch<Post[]>(
+    `*[_type == "post"] | order(publishedAt desc)[0...3] {
+      title, 
+      slug, 
+      publishedAt, 
+      mainImage,
+      categories[]->{title},
+      "excerpt": body[0].children[0].text
+    }`
+  );
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="space-y-24 pb-20 overflow-hidden">
+      
+      {/* --- HERO SECTION (SEAMLESS CUTOUT) --- */}
+      <section className="relative pt-16 md:pt-28 pb-0 max-w-screen-xl mx-auto px-6">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          {/* LEFT: Text Content */}
+          <div className="space-y-8 pb-12 z-10 order-2 lg:order-1 relative">
+             
+            {/* Decorative Dash */}
+            <div className="inline-flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase animate-in fade-in slide-in-from-bottom-3 duration-500">
+              <span className="w-8 h-[2px] bg-primary"></span>
+              Senior Tech Leader
+            </div>
+            
+            <h1 className="text-5xl md:text-5xl font-bold text-heading tracking-tight leading-[1.1]">
+              Uniting <br />
+              
+              <span className="bg-clip-text bg-gradient-to-r text-primary">
+                Commercial Strategy <br />
+              </span>
+
+              with <br />
+
+              <span className="bg-clip-text bg-gradient-to-r text-secondary">
+                 Engineering Excellence.
+              </span>
+            </h1>
+
+            <p className="text-xl text-slate-400 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700">
+              Account Management Partner & Director Software Development at <strong>Diconium</strong>. 
+              Orchestrating strategic planning, multi-client portfolios, and technical delivery to drive sustainable growth.
+            </p>
+
+            <div className="flex flex-wrap gap-6 pt-4 animate-in fade-in slide-in-from-bottom-10 duration-700">
+              <Link href="/cv" className="px-7 py-3.5 bg-primary text-slate-900 font-bold rounded-lg hover:bg-white transition-all flex items-center gap-2 shadow-[0_0_20px_-5px_rgba(186,230,253,0.3)]">
+                View Experience
+              </Link>
+              <Link href="/contact" className="px-7 py-3.5 text-slate-300 font-bold border border-slate-700 rounded-lg hover:border-primary hover:text-white transition-all">
+                Get in Touch
+              </Link>
+            </div>
+          </div>
+
+          {/* RIGHT: Cutout Image & Badge */}
+          <div className="order-1 lg:order-2 relative h-[500px] md:h-[600px] w-full flex justify-center lg:justify-end items-end animate-in fade-in zoom-in duration-1000">
+
+             {/* 2. The Cutout Image */}
+             <div className="relative w-full max-w-lg h-full">
+                <Image
+                  src="/profile.png" // Use a PNG with transparent background
+                  alt="Dennis Mende"
+                  fill
+                  className="object-contain object-bottom drop-shadow-2xl" 
+                  priority
+                />
+             </div>
+
+             {/* 3. Floating Experience Badge */}
+             <div className="absolute bottom-8 left-0 md:left-10 lg:-left-4 bg-surface/90 backdrop-blur-md border border-slate-700 p-5 rounded-2xl shadow-2xl flex items-center gap-4 animate-bounce-slow z-20 max-w-[200px] md:max-w-none">
+                <div className="bg-primary/20 p-3 rounded-xl">
+                  <TrendingUp className="w-6 h-6 text-secondary" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">Experience</p>
+                  <p className="text-2xl font-bold text-heading">20+ Years</p>
+                </div>
+              </div>
+
+          </div>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* --- BENTO GRID: EXECUTIVE SCOPE --- */}
+      <section className="max-w-screen-xl mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* TILE 1: ORGANIZATIONAL CULTURE (Replaces "Current Role") */}
+          <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-primary/50 transition-colors group">
+            <Users className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">The Human Core</h3>
+            <p className="text-xl font-bold text-heading group-hover:text-primary transition-colors">
+              High-Performance Culture
+            </p>
+            <p className="text-sm text-slate-500 mt-2">
+              I build environments where psychological safety meets accountability, empowering teams to ship faster and better.
+            </p>
+          </div>
+
+          {/* TILE 2: LEADERSHIP APPROACH (Unchanged) */}
+          <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-secondary/50 transition-colors group">
+            <Compass className="w-8 h-8 text-secondary mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Leadership Approach</h3>
+            <p className="text-xl font-bold text-heading group-hover:text-secondary transition-colors">
+              Clarity in Complexity
+            </p>
+            <p className="text-sm text-slate-500 mt-2">
+              Navigating uncertainty by aligning commercial targets with scalable, value-driven software architectures.
+            </p>
+          </div>
+
+          {/* TILE 3: TRACK RECORD (Unchanged) */}
+          <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-accent/50 transition-colors group">
+            <Globe className="w-8 h-8 text-accent mb-4 group-hover:scale-110 transition-transform" />
+            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Track Record</h3>
+            <p className="text-xl font-bold text-heading group-hover:text-accent transition-colors">
+              Global Transformation
+            </p>
+            <p className="text-sm text-slate-500 mt-2">
+              From modernizing Foot Locker’s global stack (~40% growth) to driving enterprise innovation today.
+            </p>
+          </div>
+
         </div>
-      </main>
+      </section>
+
+      {/* --- LATEST INSIGHTS (DYNAMIC FROM SANITY) --- */}
+      <section className="max-w-screen-xl mx-auto px-6">
+        <div className="flex justify-between items-end mb-10">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-heading tracking-tight">Latest Insights</h2>
+            <p className="text-slate-400 mt-2">Thoughts on leadership, technology, and commerce.</p>
+          </div>
+          <Link href="/blog" className="hidden md:flex items-center gap-2 text-primary hover:text-white transition-colors">
+            Read all posts <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {posts.map((post) => (
+            <Link key={post.slug.current} href={`/blog/${post.slug.current}`} className="group cursor-pointer">
+              {/* Image Card */}
+              <div className="aspect-[16/10] bg-surface rounded-xl mb-4 overflow-hidden border border-slate-800 group-hover:border-primary/50 transition-all relative">
+                  {post.mainImage ? (
+                    <Image
+                      src={urlFor(post.mainImage).width(600).height(400).url()}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-slate-600 font-mono text-sm bg-slate-900">
+                      No Image
+                    </div>
+                  )}
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors" />
+              </div>
+
+              {/* Meta Data */}
+              <div className="flex items-center gap-3 text-xs text-secondary font-mono mb-2">
+                {/* Category (Show first one if exists) */}
+                {post.categories && post.categories.length > 0 ? (
+                  <span>{post.categories[0].title}</span>
+                ) : (
+                  <span>General</span>
+                )}
+                <span>•</span>
+                <span>
+                  {new Date(post.publishedAt).toLocaleDateString("en-US", { 
+                    month: 'short', year: 'numeric' 
+                  })}
+                </span>
+              </div>
+
+              {/* Title & Excerpt */}
+              <h3 className="text-xl font-bold text-heading group-hover:text-primary transition-colors mb-2 line-clamp-2">
+                {post.title}
+              </h3>
+              <p className="text-slate-400 text-sm line-clamp-2 leading-relaxed">
+                {post.excerpt}
+              </p>
+            </Link>
+          ))}
+        </div>
+
+        {/* Mobile View All Link */}
+        <div className="mt-10 md:hidden flex justify-center">
+          <Link href="/blog" className="flex items-center gap-2 text-primary hover:text-white transition-colors border border-slate-700 px-6 py-3 rounded-full bg-surface">
+            Read all posts <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
+
     </div>
   );
 }
