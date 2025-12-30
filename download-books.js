@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// 1. The Data
 const library = [
   {
     id: 1,
@@ -374,10 +373,8 @@ const library = [
   }
 ];
 
-// 2. Setup
 const outputDir = path.join(__dirname, 'public/books');
 
-// 3. Execution
 (async () => {
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
@@ -390,7 +387,6 @@ const outputDir = path.join(__dirname, 'public/books');
   for (const book of library) {
     try {
       const extension = path.extname(book.cover) || '.jpg';
-      // Create safe filename: "Team Topologies" -> "team-topologies.jpg"
       const safeTitle = book.title
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
@@ -399,14 +395,12 @@ const outputDir = path.join(__dirname, 'public/books');
       const fileName = `${safeTitle}${extension}`;
       const filePath = path.join(outputDir, fileName);
 
-      // Download
       const response = await fetch(book.cover);
       if (!response.ok) throw new Error(`Failed to fetch ${book.cover}`);
       
       const buffer = await response.arrayBuffer();
       fs.writeFileSync(filePath, Buffer.from(buffer));
 
-      // Add to new array with local path
       updatedLibrary.push({
         ...book,
         cover: `/books/${fileName}`
@@ -415,7 +409,6 @@ const outputDir = path.join(__dirname, 'public/books');
       console.log(`✅ Downloaded: ${book.title}`);
     } catch (error) {
       console.error(`❌ Error downloading ${book.title}:`, error.message);
-      // Keep original URL as fallback
       updatedLibrary.push(book);
     }
   }

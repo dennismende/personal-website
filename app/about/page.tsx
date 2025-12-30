@@ -7,7 +7,6 @@ import {
 
 export default function AboutPage() {
   
-  // 1. INTERESTS DATA
   const interests = [
     { icon: Heart, label: "Family", text: "Always No. 1" },
     { icon: BookOpen, label: "Reading", text: "Constant learning" },
@@ -19,7 +18,6 @@ export default function AboutPage() {
     { icon: Trophy, label: "Sports", text: "Soccer & Football" },
   ];
 
-  // 2. BOOKS DATA
   const books = [
     {
       title: "Team Topologies",
@@ -41,7 +39,6 @@ export default function AboutPage() {
     },
   ];
 
-  // 3. TOOLS DATA
   const tools = {
     hardware: ["MacBook M1 Pro", "Logitech MX Keys", "Logitech MX Master 3", "Airpods Pro 2", "Bose 700 Headphones", "iPhone 14 Pro Max", "Apple Watch Ultra 2"],
     software: ["Home Assistant", "VS Code", "iTerm", "Rectangle Pro", "Notion", "TickTick", "OBS", "Final Cut Pro"],
@@ -50,19 +47,15 @@ export default function AboutPage() {
   return (
     <section className="max-w-5xl mx-auto px-6 pb-24 pt-10 animate-in fade-in duration-700 space-y-20">
       
-      {/* --- SECTION 1: RESTORED INTRO LAYOUT --- */}
       <div className="space-y-8">
          
-         {/* Standardized Breadcrumb (Kept for consistency) */}
          <div className="flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase border-b border-slate-800 pb-4">
             <User className="w-4 h-4" />
             Personal Profile
          </div>
 
-         {/* The 50/50 Grid Layout You Liked */}
          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
-            {/* Left: Text Content */}
             <div className="space-y-6">
               <div className="space-y-2">
                 <h1 className="text-4xl md:text-6xl font-bold text-heading tracking-tight">
@@ -87,7 +80,6 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right: Image (Floating Square) */}
             <div className="flex justify-center md:justify-end">
               <div className="relative w-72 h-72 md:w-80 md:h-80 group">
                 <div className="absolute top-4 left-4 w-full h-full bg-slate-800 rounded-2xl border border-slate-700 transition-transform duration-500 group-hover:top-2 group-hover:left-2" />
@@ -107,7 +99,6 @@ export default function AboutPage() {
          </div>
       </div>
 
-      {/* --- SECTION 2: THINGS I CARE ABOUT --- */}
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
           Things I Care About
@@ -123,7 +114,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* --- SECTION 3: MY STORY (TEXT) --- */}
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
           My Journey
@@ -144,7 +134,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* --- NEW SECTION 4: LEADERSHIP PHILOSOPHY --- */}
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
           How I Lead
@@ -174,7 +163,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* --- NEW SECTION 5: BOOKSHELF --- */}
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
            Highly Recommended
@@ -185,7 +173,6 @@ export default function AboutPage() {
           {books.map((book, idx) => (
             <div key={idx} className="group bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 flex items-start gap-4"
       >
-                {/* Cover Image Wrapper */}
                 <div className="relative w-16 h-24 flex-shrink-0 shadow-lg rounded overflow-hidden border border-slate-700/50">
                   <Image 
                     src={book.cover} 
@@ -196,7 +183,6 @@ export default function AboutPage() {
                   />
                 </div>
 
-                {/* Text Content */}
                 <div className="flex flex-col justify-center min-h-[6rem]">
                   <h3 className="font-bold text-heading text-lg leading-tight mb-1">
                     {book.title}
@@ -208,14 +194,12 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* --- NEW SECTION 6: MY TOOLBELT --- */}
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
            My Toolbelt
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            {/* Hardware */}
             <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
                 <div className="flex items-center gap-3 mb-6">
                     <Cpu className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
@@ -230,7 +214,6 @@ export default function AboutPage() {
                 </ul>
             </div>
 
-            {/* Software */}
             <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
                 <div className="flex items-center gap-3 mb-6">
                     <Layers className="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" />
@@ -247,9 +230,7 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* --- NEW SECTION 7: THE "NOW" PAGE --- */}
       <div className="bg-surface border border-slate-800 rounded-2xl p-8 md:p-12 hover:border-secondary/50 relative overflow-hidden">
-        {/* Background Decoration */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10" />
         
         <div className="relative z-10 space-y-6">

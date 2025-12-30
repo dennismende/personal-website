@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { Search, Star, BookOpen, Clock, CheckCircle2 } from "lucide-react";
 
-// --- 1. MOCK DATA (Replace with real data or Sanity fetch later) ---
 const library = [
   {
     "id": 1,
@@ -395,14 +394,12 @@ const library = [
   }
 ];
 
-// Extract unique categories
 const categories = ["All", ...Array.from(new Set(library.map(book => book.category)))];
 
 export default function BooksPage() {
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
 
-  // Filter Logic
   const filteredBooks = library.filter((book) => {
     const matchesCategory = filter === "All" || book.category === filter;
     const matchesSearch = book.title.toLowerCase().includes(search.toLowerCase()) || 
@@ -413,7 +410,6 @@ export default function BooksPage() {
   return (
     <section className="max-w-5xl mx-auto px-6 pb-24 pt-10 animate-in fade-in duration-700">
       
-      {/* --- STANDARDIZED HEADER --- */}
       <div className="space-y-6 border-b border-slate-800 pb-10 mb-12">
         <div className="flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase">
           <BookOpen className="w-4 h-4" />
@@ -430,10 +426,8 @@ export default function BooksPage() {
           </div>
         </div>
 
-        {/* Controls: Search & Filter */}
         <div className="flex flex-col md:flex-row gap-6 justify-between items-center pt-4">
             
-            {/* Category Pills */}
             <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 {categories.map(cat => (
                     <button
@@ -450,7 +444,6 @@ export default function BooksPage() {
                 ))}
             </div>
 
-            {/* Search Input */}
             <div className="relative w-full md:w-64 group">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 group-focus-within:text-primary transition-colors" />
                 <input 
@@ -464,14 +457,11 @@ export default function BooksPage() {
         </div>
       </div>
 
-      {/* --- BOOK GRID --- */}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
         {filteredBooks.map((book) => (
           <div key={book.id} className="group relative flex flex-col">
             
-            {/* 1. COVER IMAGE CARD */}
             <div className="relative w-full aspect-[2/3] rounded-lg ounded overflow-hidden border border-slate-700/50 hover:border-secondary/100">
-                {/* Status Badge */}
                 <div className="absolute top-2 right-2 z-10">
                     <StatusBadge status={book.status} />
                 </div>
@@ -485,14 +475,12 @@ export default function BooksPage() {
                 />
             </div>
 
-            {/* 2. DETAILS */}
             <div className="mt-4 space-y-1">
                 <h3 className="text-heading font-bold text-sm md:text-base leading-tight line-clamp-2 group-hover:text-primary transition-colors">
                     {book.title}
                 </h3>
                 <p className="text-xs md:text-sm text-slate-500 line-clamp-1">{book.author}</p>
                 
-                {/* Rating Stars */}
                 {book.rating > 0 && (
                     <div className="flex items-center gap-0.5 pt-1 text-yellow-500/80">
                         {[...Array(5)].map((_, i) => (
@@ -509,7 +497,6 @@ export default function BooksPage() {
         ))}
       </div>
 
-      {/* Empty State */}
       {filteredBooks.length === 0 && (
           <div className="text-center py-20 opacity-50">
               <BookOpen className="w-12 h-12 mx-auto mb-4 text-slate-600" />
@@ -521,7 +508,6 @@ export default function BooksPage() {
   );
 }
 
-// --- HELPER COMPONENT: STATUS BADGE ---
 function StatusBadge({ status }: { status: string }) {
     if (status === "Reading") {
         return (
@@ -537,5 +523,5 @@ function StatusBadge({ status }: { status: string }) {
             </span>
         );
     }
-    return null; // Don't show anything for "Want to read" to keep it clean
+    return null;
 }

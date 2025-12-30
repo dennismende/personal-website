@@ -12,12 +12,11 @@ import {
   Github 
 } from "lucide-react";
 
-// --- 1. SANITY SETUP ---
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: "production",
   apiVersion: "2024-01-01",
-  useCdn: false, // False ensures you always see the latest draft/published content
+  useCdn: false,
 });
 
 const builder = imageUrlBuilder(client);
@@ -26,7 +25,6 @@ function urlFor(source: any) {
   return builder.image(source);
 }
 
-// Interface for the fetched data
 interface Post {
   title: string;
   slug: { current: string };
@@ -38,7 +36,6 @@ interface Post {
 
 export default async function HomePage() {
 
-  // --- 2. FETCH LATEST 3 POSTS ---
   const posts = await client.fetch<Post[]>(
     `*[_type == "post"] | order(publishedAt desc)[0...3] {
       title, 
@@ -53,15 +50,12 @@ export default async function HomePage() {
   return (
     <div className="space-y-24 pb-20 overflow-hidden">
       
-      {/* --- HERO SECTION (SEAMLESS CUTOUT) --- */}
       <section className="relative pt-16 md:pt-28 pb-0 max-w-screen-xl mx-auto px-6">
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           
-          {/* LEFT: Text Content */}
           <div className="space-y-8 pb-12 z-10 order-2 lg:order-1 relative">
              
-            {/* Decorative Dash */}
             <div className="inline-flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase animate-in fade-in slide-in-from-bottom-3 duration-500">
               <span className="w-8 h-[2px] bg-primary"></span>
               Senior Tech Leader
@@ -96,13 +90,11 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* RIGHT: Cutout Image & Badge */}
           <div className="order-1 lg:order-2 relative h-[500px] md:h-[600px] w-full flex justify-center lg:justify-end items-end animate-in fade-in zoom-in duration-1000">
 
-             {/* 2. The Cutout Image */}
              <div className="relative w-full max-w-lg h-full">
                 <Image
-                  src="/profile.png" // Use a PNG with transparent background
+                  src="/profile.png"
                   alt="Dennis Mende"
                   fill
                   className="object-contain object-bottom drop-shadow-2xl" 
@@ -110,7 +102,6 @@ export default async function HomePage() {
                 />
              </div>
 
-             {/* 3. Floating Experience Badge */}
              <div className="absolute bottom-8 left-0 md:left-10 lg:-left-4 bg-surface/90 backdrop-blur-md border border-slate-700 p-5 rounded-2xl shadow-2xl flex items-center gap-4 animate-bounce-slow z-20 max-w-[200px] md:max-w-none">
                 <div className="bg-primary/20 p-3 rounded-xl">
                   <TrendingUp className="w-6 h-6 text-secondary" />
@@ -126,11 +117,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* --- BENTO GRID: EXECUTIVE SCOPE --- */}
       <section className="max-w-screen-xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           
-          {/* TILE 1: ORGANIZATIONAL CULTURE (Replaces "Current Role") */}
           <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-primary/50 transition-colors group">
             <Users className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">The Human Core</h3>
@@ -142,7 +131,6 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {/* TILE 2: LEADERSHIP APPROACH (Unchanged) */}
           <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-secondary/50 transition-colors group">
             <Compass className="w-8 h-8 text-secondary mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Leadership Approach</h3>
@@ -154,7 +142,6 @@ export default async function HomePage() {
             </p>
           </div>
 
-          {/* TILE 3: TRACK RECORD (Unchanged) */}
           <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-accent/50 transition-colors group">
             <Globe className="w-8 h-8 text-accent mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Track Record</h3>
@@ -169,7 +156,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* --- LATEST INSIGHTS (DYNAMIC FROM SANITY) --- */}
       <section className="max-w-screen-xl mx-auto px-6">
         <div className="flex justify-between items-end mb-10">
           <div>
@@ -184,7 +170,6 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.map((post) => (
             <Link key={post.slug.current} href={`/blog/${post.slug.current}`} className="group cursor-pointer">
-              {/* Image Card */}
               <div className="aspect-[16/10] bg-surface rounded-xl mb-4 overflow-hidden border border-slate-800 group-hover:border-primary/50 transition-all relative">
                   {post.mainImage ? (
                     <Image
@@ -198,13 +183,10 @@ export default async function HomePage() {
                       No Image
                     </div>
                   )}
-                  {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors" />
               </div>
 
-              {/* Meta Data */}
               <div className="flex items-center gap-3 text-xs text-secondary font-mono mb-2">
-                {/* Category (Show first one if exists) */}
                 {post.categories && post.categories.length > 0 ? (
                   <span>{post.categories[0].title}</span>
                 ) : (
@@ -218,7 +200,6 @@ export default async function HomePage() {
                 </span>
               </div>
 
-              {/* Title & Excerpt */}
               <h3 className="text-xl font-bold text-heading group-hover:text-primary transition-colors mb-2 line-clamp-2">
                 {post.title}
               </h3>
@@ -229,7 +210,6 @@ export default async function HomePage() {
           ))}
         </div>
 
-        {/* Mobile View All Link */}
         <div className="mt-10 md:hidden flex justify-center">
           <Link href="/blog" className="flex items-center gap-2 text-primary hover:text-white transition-colors border border-slate-700 px-6 py-3 rounded-full bg-surface">
             Read all posts <ArrowRight className="w-4 h-4" />

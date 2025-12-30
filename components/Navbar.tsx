@@ -8,7 +8,6 @@ import { Menu, X, ChevronDown, BookOpen, Globe, User } from "lucide-react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
@@ -23,7 +22,6 @@ export default function Navbar() {
     <header className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-slate-800/50 bg-background/80">
       <div className="w-full max-w-screen-2xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
         
-        {/* LOGO */}
         <Link href="/" onClick={closeMenu} className="relative z-50 flex items-center transition-opacity hover:opacity-80">
           <Image 
             src="/signature.png" 
@@ -35,12 +33,10 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* DESKTOP NAV */}
         <nav className="hidden md:flex gap-8 text-sm font-medium items-center">
           <DesktopNav />
         </nav>
 
-        {/* MOBILE BURGER BUTTON */}
         <button 
           className="md:hidden text-text hover:text-primary relative z-50 p-2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
@@ -51,7 +47,6 @@ export default function Navbar() {
 
       </div>
 
-      {/* MOBILE MENU OVERLAY */}
       <div 
         className={`
             fixed inset-0 w-screen h-screen bg-background z-40 
@@ -60,11 +55,9 @@ export default function Navbar() {
             ${isOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-full"}
         `}
       >
-          {/* Decorative Blobs */}
           <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
 
-          {/* Mobile Links */}
           <MobileNav onClick={closeMenu} />
       </div>
 
@@ -72,7 +65,6 @@ export default function Navbar() {
   );
 }
 
-// --- DESKTOP NAVIGATION COMPONENT ---
 function DesktopNav() {
   return (
     <>
@@ -105,7 +97,6 @@ function DesktopNav() {
   );
 }
 
-// Helper for Dropdown Items
 function DropdownItem({ href, icon: Icon, label }: { href: string, icon: any, label: string }) {
   return (
     <Link href={href} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800/50 hover:text-primary transition-colors text-slate-300">
@@ -115,8 +106,6 @@ function DropdownItem({ href, icon: Icon, label }: { href: string, icon: any, la
   );
 }
 
-
-// --- MOBILE NAVIGATION COMPONENT ---
 function MobileNav({ onClick }: { onClick: () => void }) {
   const baseClass = "text-3xl font-bold text-heading hover:text-primary transition-colors";
   const subClass = "text-xl font-medium text-slate-400 hover:text-primary transition-colors flex items-center gap-3";

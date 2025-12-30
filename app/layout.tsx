@@ -4,15 +4,44 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
-import { Linkedin, Github, Youtube } from "lucide-react"; // Imported icons
+import { Linkedin, Github, Youtube } from "lucide-react";
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 
+const baseUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://dennismende.com' 
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
-  title: "Dennis Mende | Digital Leader & Tech Strategist",
-  description: "Senior e-commerce and technology leader specializing in scaling digital businesses.",
+  title: "Dennis Mende | Account Management Partner & Digital Leader",
+  description: "Executive leader at Diconium with a track record in commercial strategy, P&L management, and engineering excellence.",
+  keywords: ["Dennis Mende, Digital Leadership, Account Management Partner, Engineering Excellence, Commercial Strategy, Software Architecture, P&L Management"],
+  authors: [{ name: 'Dennis Mende' }],
+  alternates: {
+    canonical: 'https://dennismende.com/',
+  },
+  openGraph: {
+    title: 'Dennis Mende | Digital Leader',
+    description: 'Uniting commercial strategy with engineering excellence.',
+    url: 'https://dennismende.com/',
+    siteName: 'Dennis Mende Personal Website',
+    images: [
+      {
+        url: `${baseUrl}/dennis-mende-headshot.jpg`,
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dennis Mende | Digital Leader',
+    description: 'Uniting commercial strategy with engineering excellence.',
+    images: [`${baseUrl}/dennis-mende-headshot.jpg`],
+  },
 };
 
 export default function RootLayout({
@@ -51,7 +80,7 @@ export default function RootLayout({
                  <Linkedin className="w-5 h-5" />
                </a>
 
-               {/* GitHub (Add your URL) */}
+               {/* GitHub */}
                <a 
                  href="https://github.com/dennismende" 
                  target="_blank" 

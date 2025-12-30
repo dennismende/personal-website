@@ -5,9 +5,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-// 1. Setup Sanity Image Builder
 const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID, // COPY FROM sanity.config.ts
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: "production",
   useCdn: true,
   apiVersion: "2024-01-01",
@@ -19,7 +18,6 @@ function urlFor(source: any) {
   return builder.image(source);
 }
 
-// 2. Define the Components
 export const RichTextComponents = {
   block: {
     h1: ({ children }: any) => (
@@ -91,7 +89,6 @@ export const RichTextComponents = {
     },
   },
 
-  // 3. YOUR EXISTING MARKS (Links)
   marks: {
     link: ({ children, value }: any) => {
       const rel = !value.href.startsWith("/")

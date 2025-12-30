@@ -4,7 +4,6 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { Calendar, ArrowRight, ChevronLeft, ChevronRight, X, PenTool } from "lucide-react";
 
-// 1. Setup Sanity Client
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: "production",
@@ -24,7 +23,7 @@ interface Post {
   publishedAt: string;
   mainImage: any;
   excerpt: string;
-  categories: { title: string }[]; // Added categories to interface
+  categories: { title: string }[];
 }
 
 const POSTS_PER_PAGE = 5;
@@ -41,13 +40,10 @@ export default async function BlogPage({
   const start = (currentPage - 1) * POSTS_PER_PAGE;
   const end = start + POSTS_PER_PAGE;
 
-  // 2. Build the Filter String
-  // If a category is selected, we add: && "Leadership" in categories[]->title
   const categoryFilter = selectedCategory 
     ? `&& $category in categories[]->title` 
     : "";
 
-  // 3. Fetch Data (Posts + All Categories for the cloud)
   const [posts, totalPosts, categories] = await Promise.all([
     client.fetch<Post[]>(
       `*[_type == "post" ${categoryFilter}] | order(publishedAt desc) [$start...$end] {
@@ -64,7 +60,6 @@ export default async function BlogPage({
       `count(*[_type == "post" ${categoryFilter}])`,
       { category: selectedCategory }
     ),
-    // Fetch all unique categories used in posts
     client.fetch<string[]>(
       `array::unique(*[_type == "category"].title)`
     )
@@ -75,7 +70,6 @@ export default async function BlogPage({
   return (
     <section className="max-w-5xl mx-auto px-6 pb-24 pt-10 animate-in fade-in duration-700">
       
-      {/* --- STANDARDIZED HEADER --- */}
       <div className="space-y-6 border-b border-slate-800 pb-10 mb-12">
         <div className="flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase">
           <PenTool className="w-4 h-4" />
@@ -91,7 +85,6 @@ export default async function BlogPage({
             </p>
         </div>
 
-        {/* Filter Bar (Integrated into Header) */}
         <div className="flex flex-wrap items-center gap-2 pt-4">
           <span className="text-xs font-mono text-slate-500 uppercase tracking-wider mr-2">Filter:</span>
           
@@ -128,7 +121,6 @@ export default async function BlogPage({
         </div>
       </div>
 
-      {/* Blog List */}
       <div className="space-y-12">
         {posts.map((post) => (
           <article key={post.slug.current} className="group relative border-b border-slate-800/50 pb-12 last:border-0">
@@ -137,7 +129,6 @@ export default async function BlogPage({
               href={`/blog/${post.slug.current}`} 
               className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
             >
-              {/* Left Column: Image */}
               <div className="md:col-span-5 relative w-full aspect-[4/3] md:aspect-[16/10] rounded-xl overflow-hidden border border-slate-800 bg-surface shadow-lg group-hover:border-primary/50 transition-all duration-300">
                 {post.mainImage ? (
                   <Image 
@@ -155,10 +146,8 @@ export default async function BlogPage({
                 <div className="absolute inset-0 bg-slate-950/0 group-hover:bg-slate-950/10 transition-colors" />
               </div>
 
-              {/* Right Column: Content */}
               <div className="md:col-span-7 flex flex-col justify-center h-full space-y-3">
                 
-                {/* Meta Row: Date + Categories */}
                 <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-secondary">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3 h-3" />
@@ -166,7 +155,6 @@ export default async function BlogPage({
                         month: 'short', day: 'numeric', year: 'numeric'
                     })}
                   </span>
-                  {/* Show categories for this specific post */}
                   {post.categories && post.categories.length > 0 && (
                     <>
                       <span className="text-slate-600">•</span>
@@ -201,7 +189,6 @@ export default async function BlogPage({
         )}
       </div>
 
-      {/* Pagination (Preserves Category Selection) */}
       {totalPages > 1 && (
         <div className="mt-20 flex items-center justify-between border-t border-slate-800 pt-8">
             {currentPage > 1 ? (

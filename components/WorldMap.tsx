@@ -5,11 +5,9 @@ import { geoMercator, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import { Tooltip } from "react-tooltip";
 
-// 1. STABLE URL (Official World Atlas)
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
-// 2. VISITED DATA (ISO Numeric Codes)
-// You can look up new codes here: https://en.wikipedia.org/wiki/ISO_3166-1_numeric
+// new codes here: https://en.wikipedia.org/wiki/ISO_3166-1_numeric
 const visitedCountries = [
   // --- Europe ---
   "276", // Germany
@@ -49,7 +47,6 @@ export default function WorldMap() {
     fetch(GEO_URL)
       .then((res) => res.json())
       .then((data) => {
-        // Standard world-atlas structure: data.objects.countries
         // @ts-ignore
         const countries = feature(data, data.objects.countries).features;
         setGeographies(countries);
@@ -72,7 +69,6 @@ export default function WorldMap() {
       <svg viewBox="0 0 800 450" className="w-full h-full">
         <g>
           {geographies.map((geo, i) => {
-            // geo.id is the numeric code (e.g., "276")
             const isVisited = visitedCountries.includes(geo.id); 
             const countryName = geo.properties.name;
 
@@ -81,11 +77,9 @@ export default function WorldMap() {
                 key={geo.id || i}
                 d={pathGenerator(geo) || undefined}
                 
-                // TOOLTIP
                 data-tooltip-id="map-tooltip"
                 data-tooltip-content={countryName}
                 
-                // STYLING
                 fill={isVisited ? "#c4b5fd" : "#1f2937"} 
                 stroke="#1f2028"
                 strokeWidth={0.8}
