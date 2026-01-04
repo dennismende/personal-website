@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
 import imageUrlBuilder from "@sanity/image-url";
 import { RichTextComponents } from "@/components/RichTextComponents";
+import { Metadata, ResolvingMetadata } from 'next'
 
 const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID, 
@@ -13,6 +14,53 @@ const client = createClient({
   apiVersion: "2024-01-01",
   useCdn: false,
 });
+
+type Props = {
+  params: { slug: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = await params; 
+
+  const post = await client.fetch(
+    `*[_type == "post" && slug.current == $slug][0]{
+      title,
+      publishedAt,
+      mainImage, 
+      body
+    }`,
+    { slug }
+  );
+
+  if (!post) {
+    return { title: 'Post Not Found' };
+  }
+
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${post.title} | Dennis Mende Blog`,
+    description: post.summary || post.excerpt,
+    openGraph: {
+      title: post.title,
+      description: post.summary,
+      url: `https://dennismende.com/blog/${slug}`,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Dennis Mende'],
+      images: [post.coverImage, ...previousImages],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.summary,
+      images: [post.coverImage],
+    },
+  }
+}
 
 const builder = imageUrlBuilder(client);
 
