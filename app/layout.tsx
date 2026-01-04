@@ -15,15 +15,15 @@ const baseUrl = process.env.NODE_ENV === 'production'
   : 'http://localhost:3000';
 
 export const metadata: Metadata = {
-  title: "Dennis Mende | Account Management Partner & Digital Leader",
-  description: "Executive leader at Diconium with a track record in commercial strategy, P&L management, and engineering excellence.",
+  title: "Dennis Mende | Account Management Partner & Senior Digital Leader",
+  description: "Senior Digital Leader at Diconium with a track record in commercial strategy, P&L management, and engineering excellence.",
   keywords: ["Dennis Mende, Digital Leadership, Account Management Partner, Engineering Excellence, Commercial Strategy, Software Architecture, P&L Management"],
   authors: [{ name: 'Dennis Mende' }],
   alternates: {
     canonical: 'https://dennismende.com/',
   },
   openGraph: {
-    title: 'Dennis Mende | Digital Leader',
+    title: 'Dennis Mende | Senior Digital Leader',
     description: 'Uniting commercial strategy with engineering excellence.',
     url: 'https://dennismende.com/',
     siteName: 'Dennis Mende Personal Website',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Dennis Mende | Digital Leader',
+    title: 'Dennis Mende | Senior Digital Leader',
     description: 'Uniting commercial strategy with engineering excellence.',
     images: [`${baseUrl}/social-profile-banner.png`],
   },
