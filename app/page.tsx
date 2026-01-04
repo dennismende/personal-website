@@ -58,7 +58,7 @@ export default async function HomePage() {
              
             <div className="inline-flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase animate-in fade-in slide-in-from-bottom-3 duration-500">
               <span className="w-8 h-[2px] bg-primary"></span>
-              Senior Tech Leader
+              Senior Digital Leader
             </div>
             
             <h1 className="text-5xl md:text-5xl font-bold text-heading tracking-tight leading-[1.1]">
