@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     siteName: 'Dennis Mende Personal Website',
     images: [
       {
-        url: `${baseUrl}/profile-social-banner.png`,
+        url: `${baseUrl}/social-profile-banner.png`,
         width: 1200,
         height: 630,
       },
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Dennis Mende | Digital Leader',
     description: 'Uniting commercial strategy with engineering excellence.',
-    images: [`${baseUrl}/profile-social-banner.png`],
+    images: [`${baseUrl}/social-profile-banner.png`],
   },
 };
 
