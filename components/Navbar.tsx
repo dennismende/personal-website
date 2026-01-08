@@ -24,10 +24,10 @@ export default function Navbar() {
         
         <Link href="/" onClick={closeMenu} className="relative z-50 flex items-center transition-opacity hover:opacity-80">
           <Image 
-            src="/signature.png" 
+            src="/logo.png" 
             alt="Dennis Mende"
-            width={220}
-            height={220}
+            width={50}
+            height={50}
             className="object-contain"
             priority
           />
