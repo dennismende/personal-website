@@ -15,16 +15,28 @@ const baseUrl = process.env.NODE_ENV === 'production'
   : 'http://localhost:3000';
 
 export const metadata: Metadata = {
-  title: "Dennis Mende | Account Management Partner & Senior Digital Leader",
-  description: "Senior Digital Leader at Diconium with a track record in commercial strategy, P&L management, and engineering excellence.",
-  keywords: ["Dennis Mende, Digital Leadership, Account Management Partner, Engineering Excellence, Commercial Strategy, Software Architecture, P&L Management"],
+  title: "Dennis Mende | Senior Technology Leader & Strategy Executive",
+  description: "Senior Technology Leader uniting commercial strategy with engineering excellence. Proven success leading large-scale organizations (120+ FTEs) and managing multi-million Euro P&Ls.",
+  
+  keywords: [
+    "Dennis Mende", 
+    "Senior Technology Leader", 
+    "VP Engineering", 
+    "CIO", 
+    "Digital Strategy", 
+    "Engineering Excellence", 
+    "P&L Management", 
+    "Organizational Transformation"
+  ],
+  
   authors: [{ name: 'Dennis Mende' }],
   alternates: {
     canonical: 'https://dennismende.com/',
   },
+  
   openGraph: {
-    title: 'Dennis Mende | Senior Digital Leader',
-    description: 'Uniting commercial strategy with engineering excellence.',
+    title: 'Dennis Mende | Senior Technology Leader',
+    description: 'Uniting commercial strategy with engineering excellence at scale (120+ FTEs).',
     url: 'https://dennismende.com/',
     siteName: 'Dennis Mende Personal Website',
     images: [
@@ -36,10 +48,11 @@ export const metadata: Metadata = {
     ],
     type: 'website',
   },
+  
   twitter: {
     card: 'summary_large_image',
-    title: 'Dennis Mende | Senior Digital Leader',
-    description: 'Uniting commercial strategy with engineering excellence.',
+    title: 'Dennis Mende | Senior Technology Leader',
+    description: 'Uniting commercial strategy with engineering excellence at scale (120+ FTEs).',
     images: [`${baseUrl}/social-profile-banner.png`],
   },
 };
@@ -85,18 +98,6 @@ export default function RootLayout({
                >
                  <Github className="w-5 h-5" />
                </a>
-
-               {/* YouTube 
-               <a 
-                 href="https://youtube.com/@YOUR_YOUTUBE_HANDLE" 
-                 target="_blank" 
-                 rel="noopener noreferrer" 
-                 className="hover:text-primary hover:scale-110 transition-all duration-300"
-                 aria-label="YouTube"
-               >
-                 <Youtube className="w-5 h-5" />
-               </a>
-               */}
             </div>
 
           </div>
