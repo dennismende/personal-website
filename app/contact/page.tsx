@@ -41,10 +41,8 @@ export default function ContactForm() {
           ></textarea>
         </div>
 
-        {/* 1. Honeypot Field */}
         <input type="text" name="_gotcha" className="hidden" />
 
-        {/* 2. Turnstile Widget */}
         <div className="my-4">
           <Turnstile 
             siteKey="0x4AAAAAACF6KyvAKYVNsPmq" 
@@ -52,7 +50,6 @@ export default function ContactForm() {
           />
         </div>
 
-        {/* 3. Disable Submit until Verified */}
         <button 
           type="submit" 
           disabled={!token || isSubmitting}

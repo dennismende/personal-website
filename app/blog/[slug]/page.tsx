@@ -145,3 +145,11 @@ export default async function BlogPostPage({
     </article>
   );
 }
+
+export async function generateStaticParams() {
+  const posts = await client.fetch(`*[_type == "post"]{ "slug": slug.current }`);
+
+  return posts.map((post: any) => ({
+    slug: post.slug,
+  }));
+}

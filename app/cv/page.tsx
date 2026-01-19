@@ -8,49 +8,16 @@ export default function CVPage() {
       totalPeriod: "Nov 2021 - Present",
       roles: [
         {
-          title: "Account Management Partner",
-          period: "Nov 2025 - Present",
-          description: "Strategic lead for key enterprise accounts. Orchestrating yearly planning, commercial forecasting, and long-term digital roadmaps while retaining oversight of engineering delivery quality.",
+          title: "Director, Digital Engineering & Strategy",
+          period: "Nov 2021 - Present",
+          description: "Senior leadership role bridging engineering operations and commercial strategy. Currently driving strategic growth for enterprise accounts, following a successful tenure as Unit Lead for a 120-person engineering organization. Progressed through key leadership positions (Unit Lead, Hub Lead, Account Management Partner) with focus on P&L and organizational scalability.",
           achievements: [
-            "P&L Ownership: Managing the commercial forecast and yearly planning for multi-million euro accounts.",
-            "Strategic Growth: Aligning client business goals with Diconium’s service portfolio to drive sustainable revenue.",
-            "C-Level Advisory: Acting as the primary strategic partner and escalation point for client stakeholders."
+            "Unit General Management (Unit Lead): Directed an engineering organization of 120+ developers and architects with full P&L responsibility.",
+            "Commercial Strategy (Current): Managing the commercial forecast, yearly planning, and profitability for multi-million euro enterprise accounts.",
+            "Organizational Transformation: Co-led the strategic transition to a new operating model (Client Hubs), defining governance frameworks for the shared leadership structure.",
+            "Technical Vision: Established the 'T-Shaped' engineering competence strategy across the division, modernizing the talent pool to align with future market needs."
           ],
-          competencies: ["Commercial Strategy", "P&L Management", "Executive Stakeholder Mgmt", "Client Growth"]
-        },
-        {
-          title: "Client Hub Lead",
-          period: "Oct 2023 - Sep 2025",
-          description: "Driver of organizational transformation within a shared leadership trio. Took full accountability for a dedicated Client Hub, managing the P&L, client relationships, and delivery operations while navigating a major organizational restructure.",
-          achievements: [
-            "Organizational Transformation: Successfully established the new 'Client Hub' operating model, defining governance for the shared leadership team.",
-            "Holistic Accountability: Owned the full lifecycle of the hub's client portfolio, bridging the gap between commercial targets and engineering reality.",
-            "Operational Resilience: Ensured delivery continuity and commercial stability during a major organizational restructure, minimizing impact on clients and teams."
-          ],
-          competencies: ["Organizational Transformation", "Shared Leadership", "Change Management", "Competence Development"]
-        },
-        {
-          title: "Unit Lead - Experience Engineering",
-          period: "Dec 2022 - Sep 2023",
-          description: "Led the Experience Engineering unit (~120 employees) that was a part of Diconium's largest sub-entity (diconium digital solutions - dds) within a shared leadership team. As a member of the dds Management Board, I was responsible for the unit's P&L, productivity, hiring strategy, and holistic people development.",
-          achievements: [
-            "Management Board Membership: Served on the dds managemenet board, shaping high-level entity strategy and operational direction.",
-            "Scale & Operations: Managed the productivity and utilization of 120+ employees across interdisciplinary product teams.",
-            "People Development: Prioritized the growth of T-shaped engineers, fostering cross-functional software engineering skills.",
-            "Strategic Hiring: aligned talent acquisition strategy with future client needs to ensure organizational readiness."
-          ],
-          competencies: ["General Management", "Large-Scale Leadership", "P&L Ownership", "Talent Strategy"]
-        },
-        {
-          title: "Director Software Development (Competence & People)",
-          period: "Nov 2021 - present",
-          description: "Focused on the core mission of the Director role: Leading and growing a team of software engineers across multiple clients. Prioritized the evolution of the 'T-Shaped' developer profile and competence development.",
-          achievements: [
-            "Competence Strategy: Active member of Frontend & Content Management competence orgs, driving the vision of Full Stack engineering.",
-            "People Development: Established frameworks for developing T-shaped engineers, ensuring readiness for future market technology needs.",
-            "Technical Culture: Fostered a culture of continuous learning and cross-functional skill acquisition."
-          ],
-          competencies: ["People Development", "Competence Strategy", "Tech Vision", "T-Shape Mentoring"]
+          competencies: ["General Management", "P&L Management", "Org Transformation", "Digital Strategy"]
         }
       ]
     },
@@ -60,16 +27,16 @@ export default function CVPage() {
       totalPeriod: "Apr 2015 - Oct 2021",
       roles: [
         {
-          title: "Director Frontend Development",
+          title: "Director, Global Frontend Development & Architecture",
           period: "Oct 2020 - Oct 2021",
-          description: "Held a dual mandate driving global architectural strategy and regional operations. Globally responsible for the e-commerce frontend while retaining ownership of data product systems (PIM/SIM) for EMEA and APAC.",
+          description: "Rapidly promoted through the ranks to lead global frontend strategy for a Fortune 500 retailer. Held a dual mandate: defining the global architectural frontend roadmap while maintaining operational ownership of critical data systems (PIM/SIM) across EMEA and APAC.",
           achievements: [
-            "Business Impact: Directly contributed to ~40% growth in the DTC business through platform modernization and improved UX.",
-            "Architectural Strategy: Spearheaded the global transition to a micro-frontend architecture, integrating Adobe Experience Manager (AEM) for scalable content and personalization.",
-            "Operational Leadership: Directed the product and store information management ecosystems for EMEA & APAC, ensuring data integrity across markets.",
+            "Business Impact & Growth: Served as a key technical driver behind a ~40% growth in DTC revenue. Modernized the e-commerce platform to improve UX/UI performance.",
+            "Enterprise Architecture: Spearheaded the global transition from legacy monoliths to a scalable Micro-Frontend Architecture (AEM integration).",
+            "Global Operations: Owned the Product & Store Information Management ecosystems for EMEA & APAC, ensuring data integrity across multiple continents.",
             "Team Scaling: Built and aligned distributed engineering teams to execute complex, multi-region platform initiatives."
           ],
-          competencies: ["Micro-Frontend Strategy", "Global Architecture", "Adobe - AEM / Content Strategy", "Cross-Functional Leadership"]
+          competencies: ["Global Strategy", "Micro-Frontends", "Revenue Growth", "Cross-Functional Leadership"]
         },
         {
           title: "Manager / Senior Manager Software Development",
@@ -77,7 +44,7 @@ export default function CVPage() {
           description: "Led cross-functional engineering teams (Frontend & Backend) in the development of critical global platforms. Acted as a hybrid Product Owner and Technical Lead to drive the transition from legacy workflows to modern cloud architectures.",
           achievements: [
             "Cloud-Native Modernization: Architected a scalable CI/CD infrastructure, significantly reducing deployment times and operational overhead.",
-            "Global Delivery: Successfully delivered multi-continental projects (Product & Store Information Management) for EMEA & APAC markets ahead of schedule.",
+            "Global Delivery: Successfully delivered multi-continental projects for EMEA & APAC markets ahead of schedule.",
             "Agile Transformation: Established Scrum methodologies and DevOps cultures as a certified SCRUM Master.",
             "Community Building: Launched and managed a Germany-wide tech meetup group to foster knowledge sharing and recruiting."
           ],
@@ -87,11 +54,11 @@ export default function CVPage() {
     },
     {
       id: 3,
-      company: "Previous Tech Roles (Foot Locker, Tredex, Fraunhofer IML, Microsoft)",
+      company: "Early Career & Engineering Foundation",
       totalPeriod: "Jun 2006 - Mar 2015",
       roles: [
         {
-          title: "Software Engineering & Engineering Leadership",
+          title: "Software Engineering & Leadership (Microsoft, Fraunhofer, Tredex)",
           period: "Jun 2006 - Mar 2015",
           description: "Foundational years building scalable web architectures and leading agile development teams. Progressed from hands-on software engineering to technical leadership.",
           achievements: [
@@ -157,8 +124,8 @@ export default function CVPage() {
             Curriculum <span className="text-primary">Vitae</span>
             </h1>
             <p className="text-xl text-slate-400 leading-relaxed">
-            A track record of uniting <strong>commercial strategy</strong> with <strong>engineering excellence</strong>. 
-            Proven progression from hands-on building to executive leadership.
+            <strong>Senior Technology Leader</strong> with <strong>19+ years of experience</strong> bridging technical execution and commercial strategy. 
+            Proven success leading large-scale engineering organizations (<strong>120+ FTEs</strong>) and managing multi-million Euro P&Ls.
             </p>
         </div>
       </div>
@@ -209,7 +176,14 @@ export default function CVPage() {
                             {role.achievements.map((item, i) => (
                                 <li key={i} className="flex items-start gap-3 text-slate-300">
                                     <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                                    <span className="leading-relaxed text-base">{item}</span>
+                                    <span className="leading-relaxed text-base">{item.includes(':') ? (
+                                      <>
+                                        <strong className="text-slate-200">{item.split(':')[0]}:</strong>
+                                        {item.split(':')[1]}
+                                      </>
+                                    ) : (
+                                      item
+                                    )}</span>
                                 </li>
                             ))}
                         </ul>

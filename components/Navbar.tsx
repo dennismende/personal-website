@@ -68,13 +68,11 @@ export default function Navbar() {
 function DesktopNav() {
   return (
     <>
-      {/* 1. ABOUT DROPDOWN */}
       <div className="relative group">
         <Link href="/about" className="flex items-center gap-1 hover:text-primary transition-colors py-4">
           About <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
         </Link>
 
-        {/* Dropdown Content */}
         <div className="absolute top-full -left-4 w-48 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out">
           <div className="bg-surface border border-slate-800 rounded-xl shadow-xl overflow-hidden p-2 flex flex-col gap-1">
             
@@ -89,7 +87,6 @@ function DesktopNav() {
       <Link href="/cv" className="hover:text-primary transition-colors">CV</Link>
       <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
       
-      {/* CTA Button Style for Contact */}
       <Link href="/contact" className="px-4 py-2 bg-slate-800 rounded-full text-white hover:bg-primary hover:text-black transition-all">
         Contact
       </Link>

@@ -58,7 +58,7 @@ export default async function HomePage() {
              
             <div className="inline-flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase animate-in fade-in slide-in-from-bottom-3 duration-500">
               <span className="w-8 h-[2px] bg-primary"></span>
-              Senior Digital Leader
+              Senior Technology Leader
             </div>
             
             <h1 className="text-5xl md:text-5xl font-bold text-heading tracking-tight leading-[1.1]">
@@ -76,8 +76,8 @@ export default async function HomePage() {
             </h1>
 
             <p className="text-xl text-slate-400 max-w-2xl leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700">
-              Account Management Partner & Director Software Development at <strong>Diconium</strong>. 
-              Orchestrating strategic planning, multi-client portfolios, and technical delivery to drive sustainable growth.
+              <strong>Director, Digital Engineering & Strategy</strong> at Diconium. 
+              Bridging the gap between <strong>P&L ownership</strong> and complex software delivery to drive sustainable enterprise growth.
             </p>
 
             <div className="flex flex-wrap gap-6 pt-4 animate-in fade-in slide-in-from-bottom-10 duration-700">
@@ -108,7 +108,7 @@ export default async function HomePage() {
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">Experience</p>
-                  <p className="text-2xl font-bold text-heading">20+ Years</p>
+                  <p className="text-2xl font-bold text-heading">19+ Years</p>
                 </div>
               </div>
 
@@ -122,20 +122,20 @@ export default async function HomePage() {
           
           <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-primary/50 transition-colors group">
             <Users className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">The Human Core</h3>
+            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Organizational Scale</h3>
             <p className="text-xl font-bold text-heading group-hover:text-primary transition-colors">
-              High-Performance Culture
+              120+ FTE Leadership
             </p>
             <p className="text-sm text-slate-500 mt-2">
-              I build environments where psychological safety meets accountability, empowering teams to ship faster and better.
+              Building and retaining high-performance engineering units. Developing T-shaped talent and ensuring psychological safety at scale.
             </p>
           </div>
 
           <div className="bg-surface border border-slate-800 p-8 rounded-2xl hover:border-secondary/50 transition-colors group">
             <Compass className="w-8 h-8 text-secondary mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Leadership Approach</h3>
+            <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Strategic Control</h3>
             <p className="text-xl font-bold text-heading group-hover:text-secondary transition-colors">
-              Clarity in Complexity
+              P&L & Tech Vision
             </p>
             <p className="text-sm text-slate-500 mt-2">
               Navigating uncertainty by aligning commercial targets with scalable, value-driven software architectures.
@@ -146,10 +146,10 @@ export default async function HomePage() {
             <Globe className="w-8 h-8 text-accent mb-4 group-hover:scale-110 transition-transform" />
             <h3 className="text-slate-400 text-sm font-medium uppercase tracking-wider mb-1">Track Record</h3>
             <p className="text-xl font-bold text-heading group-hover:text-accent transition-colors">
-              Global Transformation
+              Global Impact
             </p>
             <p className="text-sm text-slate-500 mt-2">
-              From modernizing Foot Locker’s global stack (~40% growth) to driving enterprise innovation today.
+              From modernizing Foot Locker’s global stack (<strong>~40% revenue growth</strong>) to driving enterprise innovation today.
             </p>
           </div>
 

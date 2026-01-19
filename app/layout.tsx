@@ -52,24 +52,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} font-sans bg-background text-text antialiased min-h-screen flex flex-col`}>
-        {/* Full Width Header */}
         <Navbar />
 
-        {/* Full Width Main Content */}
         <main className="flex-grow pt-32 px-6 md:px-12 w-full max-w-screen-2xl mx-auto">
           {children}
           <Analytics />
           <SpeedInsights />
         </main>
 
-        {/* Footer Section */}
         <footer className="py-12 px-6 border-t border-slate-800/50 mt-20">
           <div className="w-full max-w-screen-2xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 text-slate-600 text-sm">
             
             <span>© {new Date().getFullYear()} Dennis Mende. All rights reserved.</span>
             
             <div className="flex items-center gap-6">
-               {/* LinkedIn */}
                <a 
                  href="https://www.linkedin.com/in/dennismende" 
                  target="_blank" 
@@ -80,7 +76,6 @@ export default function RootLayout({
                  <Linkedin className="w-5 h-5" />
                </a>
 
-               {/* GitHub */}
                <a 
                  href="https://github.com/dennismende" 
                  target="_blank" 

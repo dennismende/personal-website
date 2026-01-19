@@ -1,21 +1,21 @@
 import Image from "next/image";
 import { 
-  Heart, BookOpen, Plane, ShoppingCart, 
+  Heart, BookOpen, Plane,  
   Laptop, Film, Dices, Trophy, MapPin,
-  Users, User, Target, Lightbulb, Layers, Cpu, Smartphone, BrainCircuit, Brain
+  Users, User, Target, Lightbulb,  BrainCircuit, Brain, Mountain
 } from "lucide-react";
 
 export default function AboutPage() {
   
   const interests = [
-    { icon: Heart, label: "Family", text: "Always No. 1" },
-    { icon: BookOpen, label: "Reading", text: "Constant learning" },
-    { icon: Plane, label: "Traveling", text: "Exploring the world" },
-    { icon: Laptop, label: "Tech", text: "Dev, Home Automation, ..." },
-    { icon: ShoppingCart, label: "Ecommerce", text: "Digital retail" },
-    { icon: Film, label: "Movies", text: "Inception, LOTR" },
-    { icon: Dices, label: "Boardgames", text: "Gloomhaven, Eclipse" },
-    { icon: Trophy, label: "Sports", text: "Soccer & Football" },
+    { icon: Heart, label: "Family", text: "My foundation" },
+    { icon: BookOpen, label: "Reading", text: "Non-fiction junkie" },
+    { icon: Plane, label: "Traveling", text: "Cultural exploration" },
+    { icon: Laptop, label: "Home Lab", text: "Automating everything" },
+    { icon: Mountain, label: "Outdoors", text: "Hiking & Nature" },
+    { icon: Film, label: "Cinema", text: "Sci-Fi & Epics" },
+    { icon: Dices, label: "Strategy", text: "Complex Boardgames" },
+    { icon: Trophy, label: "Sports", text: "Football enthusiast" },
   ];
 
   const books = [
@@ -38,11 +38,6 @@ export default function AboutPage() {
       cover: "/books/atomic-habits.jpg"
     },
   ];
-
-  const tools = {
-    hardware: ["MacBook M1 Pro", "Logitech MX Keys", "Logitech MX Master 3", "Airpods Pro 2", "Bose 700 Headphones", "iPhone 14 Pro Max", "Apple Watch Ultra 2"],
-    software: ["Home Assistant", "VS Code", "iTerm", "Rectangle Pro", "Notion", "TickTick", "OBS", "Final Cut Pro"],
-  };
 
   return (
     <section className="max-w-5xl mx-auto px-6 pb-24 pt-10 animate-in fade-in duration-700 space-y-20">
@@ -69,12 +64,15 @@ export default function AboutPage() {
 
               <div className="prose prose-invert prose-p:text-slate-400 prose-lg leading-relaxed">
                 <p>
-                  Welcome to my site! While my career is in technology, this space is about who I am behind the screen.
+                  Welcome to my corner of the internet. While my day job involves steering large-scale technology units, this space is about the human behind the strategy.
                 </p>
                 <p>
-                  I'm in my <strong>early 40s</strong> and I live together with my wonderful wife 
-                  <span className="text-slate-200 font-medium"> Melanie</span>, our little one 
-                  <span className="text-slate-200 font-medium"> Zoey Lynn</span>, and our cat lady
+                  I'm a believer in <strong>lifelong learning</strong> and <strong>deliberate practice</strong>. When I'm not optimizing engineering organizations, I'm usually optimizing my home automation setup or losing a strategy board game.
+                </p>
+                <p>
+                  I live in Germany with my wonderful wife 
+                  <span className="text-slate-200 font-medium"> Melanie</span>, our daughter 
+                  <span className="text-slate-200 font-medium"> Zoey Lynn</span>, and our cat 
                   <span className="text-slate-200 font-medium"> Luna</span>.
                 </p>
               </div>
@@ -101,7 +99,7 @@ export default function AboutPage() {
 
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
-          Things I Care About
+          Beyond the Desk
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {interests.map((item, idx) => (
@@ -116,48 +114,46 @@ export default function AboutPage() {
 
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
-          My Journey
+          The Journey
         </h2>
         
         <div className="prose prose-invert prose-lg max-w-none prose-p:text-slate-400 prose-strong:text-slate-200">
           <p>
-            I started coding in the 2000s, initially balancing a love for tech with a love for cars. 
-            After a brief stint in Engineering, I realized code was my true medium and switched to <strong>Computer Science</strong>.
+            My path to leadership wasn't linear. I started in the 2000s as a hands-on builder, obsessed with the logic of code and the intricacies of hardware. That technical foundation gave me the "first principles" understanding I still use today.
           </p>
           <p>
-            It was the perfect move. I earned my Master's in 2012 and haven't stopped building since.
+            The pivotal moment came at <strong>Foot Locker</strong>. Leading global teams and driving a 40% growth in digital revenue taught me that <em>code doesn't scale linearly—people do.</em> I shifted my focus from architecting systems to architecting organizations.
           </p>
           <p>
-            Today, I unite strategic business growth with technical execution as 
-            <strong> Account Management Partner & Director Software Development</strong> at <em>Diconium</em>.
+            Today, as a <strong>Senior Technology Leader at Diconium</strong>, I operate at the intersection of commercial strategy and engineering excellence. I build environments where 120+ engineers can thrive, ensuring that technology isn't just a cost center, but the primary driver of business value.
           </p>
         </div>
       </div>
 
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
-          How I Lead
+          Leadership Philosophy
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
+          <div className="bg-surface border border-slate-800 p-6 rounded-xl hover:border-secondary/50 transition-colors group">
             <Users className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-heading mb-2">People First</h3>
+            <h3 className="font-bold text-heading mb-2">Empowerment over Command</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              I see myself as a gardener, not a commander. My job is to remove roadblocks, nurture talent, and empower the team to make their own decisions.
+              I don't micro-manage. I set the "North Star" and clear the path. My role is to give smart people the context and psychological safety they need to make brilliant decisions.
             </p>
           </div>
-          <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
+          <div className="bg-surface border border-slate-800 p-6 rounded-xl hover:border-secondary/50 transition-colors group">
             <Lightbulb className="w-8 h-8 text-secondary mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-heading mb-2 ">Growth Mindset</h3>
+            <h3 className="font-bold text-heading mb-2 ">Failure is Data</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Failure is data. I encourage experimentation and learning something new every single day.
+              In complex systems, perfection is impossible. I champion a culture of rapid experimentation, where "failures" are simply the cost of tuition for innovation.
             </p>
           </div>
-          <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
+          <div className="bg-surface border border-slate-800 p-6 rounded-xl hover:border-secondary/50 transition-colors group">
             <Target className="w-8 h-8 text-accent mb-4 group-hover:scale-110 transition-transform" />
-            <h3 className="font-bold text-heading mb-2">Value-Driven Engineering</h3>
+            <h3 className="font-bold text-heading mb-2">Outcome {'>'} Output</h3>
             <p className="text-sm text-slate-400 leading-relaxed">
-              Technology is a vehicle for value. I steer teams away from 'shiny object syndrome' to focus on initiatives that drive measurable ROI.
+              We don't high-five for shipping features; we high-five for moving business metrics. I align engineering efforts strictly with tangible commercial ROI.
             </p>
           </div>
         </div>
@@ -165,68 +161,32 @@ export default function AboutPage() {
 
       <div className="space-y-8">
         <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
-           Highly Recommended
+           Bookshelf
         </h2>
-        <p className="text-slate-400">Books that have shaped my thinking.</p>
+        <p className="text-slate-400">Three books that fundamentally changed how I view management.</p>
         
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {books.map((book, idx) => (
-            <div key={idx} className="group bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 flex items-start gap-4"
-      >
+            <div key={idx} className="group bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 flex items-start gap-4 transition-all hover:-translate-y-1">
                 <div className="relative w-16 h-24 flex-shrink-0 shadow-lg rounded overflow-hidden border border-slate-700/50">
-                  <Image 
-                    src={book.cover} 
-                    alt={book.title}
-                    fill
-                    className="object-cover"
-                    sizes="64px"
-                  />
+                   <div className={`w-full h-full bg-gradient-to-br ${book.color}`} />
+                    <Image 
+                      src={book.cover} 
+                      alt={book.title}
+                      fill
+                      className="object-cover"
+                      sizes="64px"
+                    />
                 </div>
 
                 <div className="flex flex-col justify-center min-h-[6rem]">
-                  <h3 className="font-bold text-heading text-lg leading-tight mb-1">
+                  <h3 className="font-bold text-heading text-lg leading-tight mb-1 group-hover:text-primary transition-colors">
                     {book.title}
                   </h3>
                   <p className="text-sm text-slate-500 italic">by {book.author}</p>
                 </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      <div className="space-y-8">
-        <h2 className="text-2xl font-bold text-heading border-l-4 border-primary pl-4">
-           My Toolbelt
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
-                <div className="flex items-center gap-3 mb-6">
-                    <Cpu className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                    <h3 className="text-lg font-bold text-heading">Hardware</h3>
-                </div>
-                <ul className="space-y-3">
-                    {tools.hardware.map(item => (
-                        <li key={item} className="flex items-center gap-2 text-slate-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary/50" /> {item}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-
-            <div className="bg-surface border border-slate-800 p-4 rounded-xl hover:border-secondary/50 transition-colors group">
-                <div className="flex items-center gap-3 mb-6">
-                    <Layers className="w-5 h-5 text-secondary group-hover:scale-110 transition-transform" />
-                    <h3 className="text-lg font-bold text-heading">Software</h3>
-                </div>
-                <ul className="space-y-3">
-                    {tools.software.map(item => (
-                        <li key={item} className="flex items-center gap-2 text-slate-400 text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary/50" /> {item}
-                        </li>
-                    ))}
-                </ul>
-            </div>
         </div>
       </div>
 
@@ -244,29 +204,35 @@ export default function AboutPage() {
           </div>
           
           <p className="text-lg text-slate-400 leading-relaxed max-w-2xl">
-            I believe in constant evolution. Right now, I'm deep diving into topics around 
-            <span className="text-primary"> leadership</span>, 
-            <span className="text-secondary"> productivity</span>, and 
-            <span className="text-accent"> AI</span>.
+            I believe that if you aren't upgrading your operating system, you're obsolete. 
+            Right now, I'm deep diving into the intersection of 
+            <span className="text-primary"> organizational design</span> and 
+            <span className="text-secondary"> generative AI</span>.
           </p>
 
-          <ul className="space-y-2 text-slate-300">
-             <li className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-primary" /> 
-                Refining decision-making frameworks for high-ambiguity environments
+          <ul className="space-y-4 text-slate-300 pt-2">
+             <li className="flex items-start gap-3">
+                <Target className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" /> 
+                <span>
+                  <strong>Decision Frameworks:</strong> Refining models for high-ambiguity strategic planning.
+                </span>
              </li>
-             <li className="flex items-center gap-2">
-                <Brain className="w-4 h-4 text-secondary" /> 
-                Expanding my personal productivity system (Second Brain)
+             <li className="flex items-start gap-3">
+                <Brain className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" /> 
+                <span>
+                  <strong>Knowledge Management:</strong> Expanding my "Second Brain" system to handle information overload.
+                </span>
              </li>
-             <li className="flex items-center gap-2">
-                <BrainCircuit className="w-4 h-4 text-accent" /> 
-                Deepening my expertise in Artificial Intelligence
+             <li className="flex items-start gap-3">
+                <BrainCircuit className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" /> 
+                <span>
+                  <strong>AI Strategy:</strong> Moving beyond the hype to implement practical LLM workflows in enterprise environments.
+                </span>
              </li>
           </ul>
 
-          <div className="pt-4 text-xs text-slate-600 font-mono">
-             Last updated: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+          <div className="pt-6 text-xs text-slate-600 font-mono border-t border-slate-800 mt-6">
+             Status: {new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
           </div>
         </div>
       </div>
