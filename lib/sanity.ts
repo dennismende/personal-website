@@ -2,7 +2,6 @@ import { createClient } from "next-sanity";
 import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-// Centralized Sanity client configuration
 export const client = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: "production",
@@ -10,14 +9,12 @@ export const client = createClient({
   useCdn: false,
 });
 
-// Image URL builder
 const builder = imageUrlBuilder(client);
 
 export function urlFor(source: SanityImageSource) {
   return builder.image(source);
 }
 
-// Common types
 export interface Post {
   title: string;
   slug: { current: string };
@@ -28,7 +25,6 @@ export interface Post {
   body?: any;
 }
 
-// Fetch helpers with ISR caching
 export async function fetchRecentPosts(limit: number = 3): Promise<Post[]> {
   return client.fetch<Post[]>(
     `*[_type == "post"] | order(publishedAt desc)[0...$limit] {
@@ -40,7 +36,7 @@ export async function fetchRecentPosts(limit: number = 3): Promise<Post[]> {
       "excerpt": body[0].children[0].text
     }`,
     { limit: limit - 1 },
-    { next: { revalidate: 3600 } } // Revalidate every hour
+    { next: { revalidate: 3600 } }
   );
 }
 

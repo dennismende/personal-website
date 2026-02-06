@@ -9,7 +9,6 @@ interface RelatedPostsProps {
 }
 
 export default async function RelatedPosts({ currentSlug, categories }: RelatedPostsProps) {
-    // Fetch related posts by category, excluding current post
     const relatedPosts = await client.fetch<Post[]>(
         `*[_type == "post" && slug.current != $currentSlug && count((categories[]->title)[@ in $categories]) > 0] | order(publishedAt desc)[0...3] {
       title,
@@ -23,7 +22,6 @@ export default async function RelatedPosts({ currentSlug, categories }: RelatedP
         { next: { revalidate: 3600 } }
     );
 
-    // If no related posts by category, fetch recent posts
     const posts = relatedPosts.length > 0
         ? relatedPosts
         : await client.fetch<Post[]>(
