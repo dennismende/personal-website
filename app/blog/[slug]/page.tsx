@@ -1,12 +1,14 @@
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Calendar } from "lucide-react";
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { notFound } from "next/navigation";
 import { RichTextComponents } from "@/components/RichTextComponents";
 import { Metadata, ResolvingMetadata } from 'next';
 import { client, urlFor, type Post } from "@/lib/sanity";
 import { BlogPostingSchema } from "@/components/JsonLd";
+import { calculateReadingTime, formatReadingTime } from "@/lib/readingTime";
+import RelatedPosts from "@/components/RelatedPosts";
 
 type Props = {
   params: { slug: string }
@@ -64,14 +66,16 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params;
 
-  const post: Post = await client.fetch(
+  const post = await client.fetch<Post & { categories: { title: string }[] }>(
     `*[_type == "post" && slug.current == $slug][0]{
       title,
       publishedAt,
       mainImage, 
-      body
+      body,
+      categories[]->{title}
     }`,
-    { slug }
+    { slug },
+    { next: { revalidate: 3600 } }
   );
 
   if (!post) {
@@ -111,16 +115,24 @@ export default async function BlogPostPage({
         )}
 
         <header className="mb-10 space-y-4">
-          {post.publishedAt && (
-            <div className="flex items-center gap-2 text-secondary text-sm font-mono">
-              <Calendar className="w-4 h-4" />
-              {new Date(post.publishedAt).toLocaleDateString("en-US", {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-              })}
-            </div>
-          )}
+          <div className="flex items-center gap-4 text-sm font-mono">
+            {post.publishedAt && (
+              <span className="flex items-center gap-2 text-secondary">
+                <Calendar className="w-4 h-4" />
+                {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </span>
+            )}
+            {post.body && (
+              <span className="flex items-center gap-2 text-slate-500">
+                <Clock className="w-4 h-4" />
+                {formatReadingTime(calculateReadingTime(post.body))}
+              </span>
+            )}
+          </div>
           <h1 className="text-4xl md:text-5xl font-bold text-heading leading-tight">
             {post.title}
           </h1>
@@ -132,6 +144,11 @@ export default async function BlogPostPage({
             components={RichTextComponents}
           />
         </div>
+
+        <RelatedPosts
+          currentSlug={slug}
+          categories={post.categories?.map(c => c.title) || []}
+        />
 
       </article>
     </>

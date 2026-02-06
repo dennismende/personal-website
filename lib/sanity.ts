@@ -28,7 +28,7 @@ export interface Post {
   body?: any;
 }
 
-// Fetch helpers
+// Fetch helpers with ISR caching
 export async function fetchRecentPosts(limit: number = 3): Promise<Post[]> {
   return client.fetch<Post[]>(
     `*[_type == "post"] | order(publishedAt desc)[0...$limit] {
@@ -39,7 +39,8 @@ export async function fetchRecentPosts(limit: number = 3): Promise<Post[]> {
       categories[]->{title},
       "excerpt": body[0].children[0].text
     }`,
-    { limit: limit - 1 }
+    { limit: limit - 1 },
+    { next: { revalidate: 3600 } } // Revalidate every hour
   );
 }
 

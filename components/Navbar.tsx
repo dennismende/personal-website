@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown, BookOpen, Globe, User } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (isOpen) {
@@ -21,10 +23,10 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 w-full z-50 backdrop-blur-md border-b border-slate-800/50 bg-background/80">
       <div className="w-full max-w-screen-2xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
-        
+
         <Link href="/" onClick={closeMenu} className="relative z-50 flex items-center transition-opacity hover:opacity-80">
-          <Image 
-            src="/logo.png" 
+          <Image
+            src="/logo.png"
             alt="Dennis Mende"
             width={50}
             height={50}
@@ -34,10 +36,10 @@ export default function Navbar() {
         </Link>
 
         <nav className="hidden md:flex gap-8 text-sm font-medium items-center">
-          <DesktopNav />
+          <DesktopNav pathname={pathname} />
         </nav>
 
-        <button 
+        <button
           className="md:hidden text-text hover:text-primary relative z-50 p-2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
@@ -47,7 +49,7 @@ export default function Navbar() {
 
       </div>
 
-      <div 
+      <div
         className={`
             fixed inset-0 w-screen h-screen bg-background z-40 
             flex flex-col items-center justify-center space-y-8
@@ -55,48 +57,74 @@ export default function Navbar() {
             ${isOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-full"}
         `}
       >
-          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/10 rounded-full blur-[100px] pointer-events-none" />
 
-          <MobileNav onClick={closeMenu} />
+        <MobileNav onClick={closeMenu} />
       </div>
 
     </header>
   );
 }
 
-function DesktopNav() {
+function DesktopNav({ pathname }: { pathname: string }) {
+  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+
   return (
     <>
       <div className="relative group">
-        <Link href="/about" className="flex items-center gap-1 hover:text-primary transition-colors py-4">
+        <Link
+          href="/about"
+          className="flex items-center gap-1 hover:text-primary transition-colors py-4"
+          aria-current={isActive("/about") ? "page" : undefined}
+        >
           About <ChevronDown className="w-4 h-4 transition-transform group-hover:rotate-180" />
         </Link>
 
         <div className="absolute top-full -left-4 w-48 pt-2 opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 ease-out">
           <div className="bg-surface border border-slate-800 rounded-xl shadow-xl overflow-hidden p-2 flex flex-col gap-1">
-            
-            <DropdownItem href="/about" icon={User} label="My Story" />
-            <DropdownItem href="/books" icon={BookOpen} label="Library" />
-            <DropdownItem href="/travel" icon={Globe} label="Travel Log" />
-            
+
+            <DropdownItem href="/about" icon={User} label="My Story" isActive={isActive("/about")} />
+            <DropdownItem href="/books" icon={BookOpen} label="Library" isActive={isActive("/books")} />
+            <DropdownItem href="/travel" icon={Globe} label="Travel Log" isActive={isActive("/travel")} />
+
           </div>
         </div>
       </div>
 
-      <Link href="/cv" className="hover:text-primary transition-colors">CV</Link>
-      <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
-      
-      <Link href="/contact" className="px-4 py-2 bg-slate-800 rounded-full text-white hover:bg-primary hover:text-black transition-all">
+      <Link
+        href="/cv"
+        className={`hover:text-primary transition-colors ${isActive("/cv") ? "text-primary" : ""}`}
+        aria-current={isActive("/cv") ? "page" : undefined}
+      >
+        CV
+      </Link>
+      <Link
+        href="/blog"
+        className={`hover:text-primary transition-colors ${isActive("/blog") ? "text-primary" : ""}`}
+        aria-current={isActive("/blog") ? "page" : undefined}
+      >
+        Blog
+      </Link>
+
+      <Link
+        href="/contact"
+        className="px-4 py-2 bg-slate-800 rounded-full text-white hover:bg-primary hover:text-black transition-all"
+        aria-current={isActive("/contact") ? "page" : undefined}
+      >
         Contact
       </Link>
     </>
   );
 }
 
-function DropdownItem({ href, icon: Icon, label }: { href: string, icon: any, label: string }) {
+function DropdownItem({ href, icon: Icon, label, isActive }: { href: string, icon: any, label: string, isActive?: boolean }) {
   return (
-    <Link href={href} className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800/50 hover:text-primary transition-colors text-slate-300">
+    <Link
+      href={href}
+      className={`flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-slate-800/50 hover:text-primary transition-colors ${isActive ? "text-primary bg-slate-800/30" : "text-slate-300"}`}
+      aria-current={isActive ? "page" : undefined}
+    >
       <Icon className="w-4 h-4" />
       <span>{label}</span>
     </Link>
@@ -113,10 +141,10 @@ function MobileNav({ onClick }: { onClick: () => void }) {
         <span className="text-xs font-mono text-primary uppercase tracking-widest mb-2">Personal</span>
         <Link href="/about" onClick={onClick} className={baseClass}>About Me</Link>
         <Link href="/books" onClick={onClick} className={subClass}>
-           <BookOpen className="w-5 h-5" /> Library
+          <BookOpen className="w-5 h-5" /> Library
         </Link>
         <Link href="/travel" onClick={onClick} className={subClass}>
-           <Globe className="w-5 h-5" /> Travel
+          <Globe className="w-5 h-5" /> Travel
         </Link>
       </div>
 
