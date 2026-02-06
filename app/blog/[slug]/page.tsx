@@ -1,19 +1,12 @@
-import { createClient } from "next-sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Calendar } from "lucide-react";
 import { notFound } from "next/navigation";
-import imageUrlBuilder from "@sanity/image-url";
 import { RichTextComponents } from "@/components/RichTextComponents";
-import { Metadata, ResolvingMetadata } from 'next'
-
-const client = createClient({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID, 
-  dataset: "production",
-  apiVersion: "2024-01-01",
-  useCdn: false,
-});
+import { Metadata, ResolvingMetadata } from 'next';
+import { client, urlFor, type Post } from "@/lib/sanity";
+import { BlogPostingSchema } from "@/components/JsonLd";
 
 type Props = {
   params: { slug: string }
@@ -23,7 +16,7 @@ export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const { slug } = await params; 
+  const { slug } = await params;
 
   const post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
@@ -62,25 +55,14 @@ export async function generateMetadata(
   }
 }
 
-const builder = imageUrlBuilder(client);
 
-function urlFor(source: any) {
-  return builder.image(source);
-}
-
-interface Post {
-  title: string;
-  publishedAt: string;
-  mainImage: any;
-  body: any;
-}
 
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>; 
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; 
+  const { slug } = await params;
 
   const post: Post = await client.fetch(
     `*[_type == "post" && slug.current == $slug][0]{
@@ -97,52 +79,62 @@ export default async function BlogPostPage({
   }
 
   return (
-    <article className="max-w-5xl mx-auto px-6 pb-24 pt-10 animate-in fade-in duration-700">
-      
-      <Link 
-        href="/blog" 
-        className="inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors mb-6"
-      >
-        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Blog
-      </Link>
+    <>
+      <BlogPostingSchema
+        title={post.title}
+        description={post.excerpt || post.title}
+        url={`https://dennismende.com/blog/${slug}`}
+        datePublished={post.publishedAt}
+        authorName="Dennis Mende"
+        image={post.mainImage ? urlFor(post.mainImage).url() : undefined}
+      />
+      <article className="max-w-5xl mx-auto px-6 pb-24 pt-10 animate-in fade-in duration-700">
 
-      {post.mainImage && (
-        <div className="relative w-full aspect-video mb-10 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-          <Image
-            src={urlFor(post.mainImage).url()}
-            alt={post.title}
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent" />
-        </div>
-      )}
+        <Link
+          href="/blog"
+          className="inline-flex items-center text-sm text-slate-400 hover:text-primary transition-colors mb-6"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" /> Back to Blog
+        </Link>
 
-      <header className="mb-10 space-y-4">
-        {post.publishedAt && (
+        {post.mainImage && (
+          <div className="relative w-full aspect-video mb-10 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
+            <Image
+              src={urlFor(post.mainImage).url()}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 to-transparent" />
+          </div>
+        )}
+
+        <header className="mb-10 space-y-4">
+          {post.publishedAt && (
             <div className="flex items-center gap-2 text-secondary text-sm font-mono">
-            <Calendar className="w-4 h-4" />
-            {new Date(post.publishedAt).toLocaleDateString("en-US", {
+              <Calendar className="w-4 h-4" />
+              {new Date(post.publishedAt).toLocaleDateString("en-US", {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'
-            })}
+              })}
             </div>
-        )}
-        <h1 className="text-4xl md:text-5xl font-bold text-heading leading-tight">
-          {post.title}
-        </h1>
-      </header>
+          )}
+          <h1 className="text-4xl md:text-5xl font-bold text-heading leading-tight">
+            {post.title}
+          </h1>
+        </header>
 
-      <div className="prose prose-invert prose-lg prose-p:text-slate-300 prose-headings:text-heading prose-a:text-primary hover:prose-a:text-secondary prose-li:text-slate-300">
-        <PortableText 
-            value={post.body} 
+        <div className="prose prose-invert prose-lg prose-p:text-slate-300 prose-headings:text-heading prose-a:text-primary hover:prose-a:text-secondary prose-li:text-slate-300">
+          <PortableText
+            value={post.body}
             components={RichTextComponents}
-        />
-      </div>
-      
-    </article>
+          />
+        </div>
+
+      </article>
+    </>
   );
 }
 

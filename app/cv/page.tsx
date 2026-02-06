@@ -1,4 +1,16 @@
 import { BadgeCheck, Briefcase, GraduationCap, Award, FileText, CheckCircle2, Tags } from "lucide-react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Curriculum Vitae | Dennis Mende",
+  description: "19+ years of experience bridging technical execution and commercial strategy. Director-level leadership of 120+ FTE engineering organization with multi-million Euro P&L ownership.",
+  openGraph: {
+    title: "Curriculum Vitae | Dennis Mende",
+    description: "Senior Technology Leader with 19+ years of experience in engineering leadership and P&L management.",
+    url: "https://dennismende.com/cv",
+    type: "profile",
+  },
+};
 
 export default function CVPage() {
   const experiences = [
@@ -99,7 +111,7 @@ export default function CVPage() {
       year: "2018"
     },
     {
-      title: "Professional Scrum Product Owner - PSPO 1", 
+      title: "Professional Scrum Product Owner - PSPO 1",
       issuer: "Scrum.org",
       year: "2018"
     },
@@ -112,21 +124,21 @@ export default function CVPage() {
 
   return (
     <section className="max-w-screen-xl mx-auto px-6 pb-24 pt-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      
+
       <div className="space-y-6 border-b border-slate-800 pb-10 mb-20">
         <div className="flex items-center gap-2 text-primary font-mono text-sm tracking-wider uppercase">
           <FileText className="w-4 h-4" />
           Professional History
         </div>
-        
+
         <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-heading tracking-tight mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-heading tracking-tight mb-6">
             Curriculum <span className="text-primary">Vitae</span>
-            </h1>
-            <p className="text-xl text-slate-400 leading-relaxed">
-            <strong>Senior Technology Leader</strong> with <strong>19+ years of experience</strong> bridging technical execution and commercial strategy. 
+          </h1>
+          <p className="text-xl text-slate-400 leading-relaxed">
+            <strong>Senior Technology Leader</strong> with <strong>19+ years of experience</strong> bridging technical execution and commercial strategy.
             Proven success leading large-scale engineering organizations (<strong>120+ FTEs</strong>) and managing multi-million Euro P&Ls.
-            </p>
+          </p>
         </div>
       </div>
 
@@ -139,10 +151,10 @@ export default function CVPage() {
         <div className="space-y-16">
           {experiences.map((company, idx) => (
             <div key={idx} className="grid grid-cols-1 md:grid-cols-12 gap-8">
-              
+
               <div className="md:col-span-4 lg:col-span-3">
                 <div className="sticky top-32">
-                   <h3 className="text-3xl font-bold text-heading group-hover:text-primary transition-colors">
+                  <h3 className="text-3xl font-bold text-heading group-hover:text-primary transition-colors">
                     {company.company}
                   </h3>
                   <span className="text-secondary font-mono mt-2 block text-sm tracking-wider border-l-2 border-secondary pl-3">
@@ -152,12 +164,12 @@ export default function CVPage() {
               </div>
 
               <div className="md:col-span-8 lg:col-span-9 space-y-16 relative border-l border-slate-800 ml-3 md:ml-0 pl-8 md:pl-12">
-                
+
                 {company.roles.map((role, rIdx) => (
                   <div key={rIdx} className="relative group">
-                    
+
                     <div className="absolute -left-[41px] md:-left-[57px] top-2 w-4 h-4 rounded-full border-2 border-slate-600 bg-background group-hover:border-primary group-hover:bg-primary transition-colors z-10" />
-                    
+
                     <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-4 mb-4">
                       <h4 className="text-xl font-bold text-slate-200 group-hover:text-primary transition-colors">
                         {role.title}
@@ -166,38 +178,38 @@ export default function CVPage() {
                         {role.period}
                       </span>
                     </div>
-                      
+
                     <p className="text-slate-400 text-lg leading-relaxed mb-6">
                       {role.description}
                     </p>
 
                     {role.achievements && (
-                        <ul className="space-y-3 mb-6">
-                            {role.achievements.map((item, i) => (
-                                <li key={i} className="flex items-start gap-3 text-slate-300">
-                                    <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                                    <span className="leading-relaxed text-base">{item.includes(':') ? (
-                                      <>
-                                        <strong className="text-slate-200">{item.split(':')[0]}:</strong>
-                                        {item.split(':')[1]}
-                                      </>
-                                    ) : (
-                                      item
-                                    )}</span>
-                                </li>
-                            ))}
-                        </ul>
+                      <ul className="space-y-3 mb-6">
+                        {role.achievements.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3 text-slate-300">
+                            <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                            <span className="leading-relaxed text-base">{item.includes(':') ? (
+                              <>
+                                <strong className="text-slate-200">{item.split(':')[0]}:</strong>
+                                {item.split(':')[1]}
+                              </>
+                            ) : (
+                              item
+                            )}</span>
+                          </li>
+                        ))}
+                      </ul>
                     )}
 
                     {role.competencies && (
-                        <div className="flex flex-wrap gap-2 items-center pt-2">
-                           <Tags className="w-4 h-4 text-slate-500 mr-2" />
-                           {role.competencies.map((tag) => (
-                              <span key={tag} className="px-3 py-1 border bg-surface border-slate-800 text-xs text-slate-400 rounded-md hover:border-primary/30 transition-colors cursor-default">
-                                {tag}
-                              </span>
-                           ))}
-                        </div>
+                      <div className="flex flex-wrap gap-2 items-center pt-2">
+                        <Tags className="w-4 h-4 text-slate-500 mr-2" />
+                        {role.competencies.map((tag) => (
+                          <span key={tag} className="px-3 py-1 border bg-surface border-slate-800 text-xs text-slate-400 rounded-md hover:border-primary/30 transition-colors cursor-default">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     )}
 
                   </div>
@@ -216,23 +228,23 @@ export default function CVPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           {certifications.map((cert, idx) => (
-             <div key={idx} className="bg-surface p-6 rounded-xl border border-slate-800 hover:border-primary/50 transition-all hover:-translate-y-1 group flex flex-col justify-between h-full">
-                <div>
-                    <span className="text-xl font-bold text-secondary font-mono mb-4 block">
-                        {cert.year}
-                    </span>
-                    
-                    <h3 className="font-bold text-heading text-lg mb-2 group-hover:text-primary transition-colors">
-                        {cert.title}
-                    </h3>
-                    
-                    <p className="text-sm text-slate-500">
-                        {cert.issuer}
-                    </p>
-                </div>
-             </div>
-           ))}
+          {certifications.map((cert, idx) => (
+            <div key={idx} className="bg-surface p-6 rounded-xl border border-slate-800 hover:border-primary/50 transition-all hover:-translate-y-1 group flex flex-col justify-between h-full">
+              <div>
+                <span className="text-xl font-bold text-secondary font-mono mb-4 block">
+                  {cert.year}
+                </span>
+
+                <h3 className="font-bold text-heading text-lg mb-2 group-hover:text-primary transition-colors">
+                  {cert.title}
+                </h3>
+
+                <p className="text-sm text-slate-500">
+                  {cert.issuer}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -243,14 +255,14 @@ export default function CVPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-surface p-8 rounded-xl border border-slate-800 hover:border-secondary/50 transition-colors group">
-                <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-heading">M.Sc. Computer Science</h3>
-                    <Award className="w-5 h-5 text-slate-600 group-hover:text-secondary" />
-                </div>
-                <p className="text-primary text-lg">Ruhr University Bochum</p>
-                <p className="text-slate-500 mt-1">2012</p>
+          <div className="bg-surface p-8 rounded-xl border border-slate-800 hover:border-secondary/50 transition-colors group">
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-xl font-bold text-heading">M.Sc. Computer Science</h3>
+              <Award className="w-5 h-5 text-slate-600 group-hover:text-secondary" />
             </div>
+            <p className="text-primary text-lg">Ruhr University Bochum</p>
+            <p className="text-slate-500 mt-1">2012</p>
+          </div>
         </div>
       </div>
     </section>
