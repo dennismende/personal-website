@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Curriculum Vitae | Dennis Mende",
-  description: "19+ years of experience bridging technical execution and commercial strategy. Director-level leadership of 120+ FTE engineering organization with multi-million Euro P&L ownership.",
+  description: "15+ years of experience bridging technical execution and commercial strategy. Director-level leadership of 120+ FTE engineering organization with multi-million Euro P&L ownership.",
   openGraph: {
     title: "Curriculum Vitae | Dennis Mende",
-    description: "Senior Technology Leader with 19+ years of experience in engineering leadership and P&L management.",
+    description: "Senior Technology Leader with 15+ years of experience in engineering leadership and P&L management.",
     url: "https://dennismende.com/cv",
     type: "profile",
   },
@@ -40,7 +40,7 @@ export default function CVPage() {
       roles: [
         {
           title: "Director, Global Frontend Development & Architecture",
-          period: "Oct 2020 - Oct 2021",
+          period: "Sept 2020 - Oct 2021",
           description: "Rapidly promoted through the ranks to lead global frontend strategy for a Fortune 500 retailer. Held a dual mandate: defining the global architectural frontend roadmap while maintaining operational ownership of critical data systems (PIM/SIM) across EMEA and APAC.",
           achievements: [
             "Business Impact & Growth: Served as a key technical driver behind a ~40% growth in DTC revenue. Modernized the e-commerce platform to improve UX/UI performance.",
@@ -51,7 +51,7 @@ export default function CVPage() {
           competencies: ["Global Strategy", "Micro-Frontends", "Revenue Growth", "Cross-Functional Leadership"]
         },
         {
-          title: "Manager / Senior Manager Software Development",
+          title: "Supervisor / Manager / Senior Manager Software Development",
           period: "Apr 2015 - Sep 2020",
           description: "Led cross-functional engineering teams (Frontend & Backend) in the development of critical global platforms. Acted as a hybrid Product Owner and Technical Lead to drive the transition from legacy workflows to modern cloud architectures.",
           achievements: [
@@ -136,7 +136,7 @@ export default function CVPage() {
             Curriculum <span className="text-primary">Vitae</span>
           </h1>
           <p className="text-xl text-slate-400 leading-relaxed">
-            <strong>Senior Technology Leader</strong> with <strong>19+ years of experience</strong> bridging technical execution and commercial strategy.
+            <strong>Senior Technology Leader</strong> with <strong>15+ years of experience</strong> bridging technical execution and commercial strategy.
             Proven success leading large-scale engineering organizations (<strong>120+ FTEs</strong>) and managing multi-million Euro P&Ls.
           </p>
         </div>

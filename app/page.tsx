@@ -91,7 +91,7 @@ export default async function HomePage() {
                 </div>
                 <div>
                   <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">Experience</p>
-                  <p className="text-2xl font-bold text-heading">19+ Years</p>
+                  <p className="text-2xl font-bold text-heading">15+ Years</p>
                 </div>
               </div>
 
