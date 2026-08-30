@@ -35,7 +35,7 @@ export function PersonSchema({
         sameAs,
         worksFor: {
             "@type": "Organization",
-            name: "diconium",
+            name: "Diconium",
             url: "https://diconium.com",
         },
     };

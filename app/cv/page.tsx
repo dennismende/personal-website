@@ -16,18 +16,18 @@ export default function CVPage() {
   const experiences = [
     {
       id: 1,
-      company: "diconium",
+      company: "Diconium",
       totalPeriod: "Nov 2021 - Present",
       roles: [
         {
           title: "Director, Digital Engineering & Strategy",
           period: "Nov 2021 - Present",
-          description: "Senior leadership role bridging engineering operations and commercial strategy. Currently driving strategic growth for enterprise accounts, following a successful tenure as Unit Lead for a 120-person engineering organization. Progressed through key leadership positions (Unit Lead, Hub Lead, Account Management Partner) with focus on P&L and organizational scalability.",
+          description: "Director grade throughout, with three mandates as the organisation scaled: Unit Lead, Hub Lead, and currently Account Management Partner. Focus on P&L ownership, organisational design, and connecting commercial strategy to engineering delivery.",
           achievements: [
-            "Unit General Management (Unit Lead): Directed an engineering organization of 120+ developers and architects with full P&L responsibility.",
-            "Commercial Strategy (Current): Managing the commercial forecast, yearly planning, and profitability for multi-million euro enterprise accounts.",
-            "Organizational Transformation: Co-led the strategic transition to a new operating model (Client Hubs), defining governance frameworks for the shared leadership structure.",
-            "Technical Vision: Established the 'T-Shaped' engineering competence strategy across the division, modernizing the talent pool to align with future market needs."
+            "Commercial Ownership (current mandate, Account Management Partner): Own the commercial forecast, annual planning and profitability for multi-million-euro enterprise accounts. Senior interface between client leadership and the delivery organisation.",
+            "Unit General Management (Unit Lead): Directed an engineering organisation of 120+ developers and architects with full P&L responsibility for the unit.",
+            "Organisational Transformation (Hub Lead): Co-led the strategic transition to a new operating model (Client Hubs), defining the governance framework for shared leadership across engineering, delivery and account management.",
+            "Technical Vision: Established the T-shaped engineering competence strategy across the division, modernising the talent pool to align with future market needs."
           ],
           competencies: ["General Management", "P&L Management", "Org Transformation", "Digital Strategy"]
         }
