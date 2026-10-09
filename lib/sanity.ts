@@ -35,7 +35,7 @@ export async function fetchRecentPosts(limit: number = 3): Promise<Post[]> {
       categories[]->{title},
       "excerpt": body[0].children[0].text
     }`,
-    { limit: limit - 1 },
+    { limit },
     { next: { revalidate: 3600 } }
   );
 }
