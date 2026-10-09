@@ -18,6 +18,57 @@ function urlFor(source: any) {
   return builder.image(source);
 }
 
+// Detects paragraphs that contain literal "1. ", "2. ", ... numbering
+// (e.g. pasted content) instead of a real Portable Text numbered list,
+// and renders them as a proper <ol> instead.
+const NUMBER_MARKER = /^\d+\.\s*$/;
+const NUMBER_SPLIT = /\n(?=\d+\.\s)/;
+
+type Span = { text: string; marks?: string[] };
+
+function renderSpan(span: Span, key: number) {
+  const content = span.marks?.includes("strong") ? (
+    <strong key={key}>{span.text}</strong>
+  ) : (
+    <span key={key}>{span.text}</span>
+  );
+  return content;
+}
+
+function parseFakeNumberedList(value: any): Span[][] | null {
+  const spans: Span[] = (value?.children || []).filter(
+    (c: any) => c._type === "span"
+  );
+  if (spans.length === 0) return null;
+
+  const firstText = spans[0].text ?? "";
+  if (!/^1\.\s/.test(firstText)) return null;
+
+  // Flatten + split each span's text on the "\nN. " boundary so the
+  // numeric marker becomes its own piece.
+  const pieces: Span[] = [];
+  for (const span of spans) {
+    const parts = (span.text ?? "").split(NUMBER_SPLIT);
+    for (const part of parts) {
+      pieces.push({ text: part, marks: span.marks });
+    }
+  }
+
+  const items: Span[][] = [];
+  let current: Span[] = [];
+  for (const piece of pieces) {
+    if (NUMBER_MARKER.test(piece.text)) {
+      if (current.length > 0) items.push(current);
+      current = [];
+      continue;
+    }
+    if (piece.text.length > 0) current.push(piece);
+  }
+  if (current.length > 0) items.push(current);
+
+  return items.length > 1 ? items : null;
+}
+
 export const RichTextComponents = {
   block: {
     h1: ({ children }: any) => (
@@ -45,11 +96,41 @@ export const RichTextComponents = {
         {children}
       </blockquote>
     ),
-    normal: ({ children }: any) => (
-      <p className="mb-6 text-lg leading-relaxed text-slate-300">
+    normal: ({ children, value }: any) => {
+      const fakeListItems = parseFakeNumberedList(value);
+      if (fakeListItems) {
+        return (
+          <ol className="list-decimal list-outside pl-6 mb-6 space-y-3 text-lg leading-relaxed text-slate-300 marker:text-primary marker:font-semibold">
+            {fakeListItems.map((item, i) => (
+              <li key={i} className="pl-1">
+                {item.map((span, j) => renderSpan(span, j))}
+              </li>
+            ))}
+          </ol>
+        );
+      }
+      return (
+        <p className="mb-6 text-lg leading-relaxed text-slate-300">
+          {children}
+        </p>
+      );
+    },
+  },
+  list: {
+    bullet: ({ children }: any) => (
+      <ul className="list-disc list-outside pl-6 mb-6 space-y-2 text-lg leading-relaxed text-slate-300 marker:text-primary">
         {children}
-      </p>
+      </ul>
     ),
+    number: ({ children }: any) => (
+      <ol className="list-decimal list-outside pl-6 mb-6 space-y-2 text-lg leading-relaxed text-slate-300 marker:text-primary">
+        {children}
+      </ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }: any) => <li className="pl-1">{children}</li>,
+    number: ({ children }: any) => <li className="pl-1">{children}</li>,
   },
   types: {
     image: ({ value }: any) => {
