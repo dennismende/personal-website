@@ -131,13 +131,13 @@ export default function AboutPage() {
 
         <div className="prose prose-invert prose-lg max-w-none prose-p:text-slate-400 prose-strong:text-slate-200">
           <p>
-            My path to leadership wasn't linear. I started in the 2000s as a hands-on builder, obsessed with the logic of code and the intricacies of hardware. That technical foundation gave me the "first principles" understanding I still use today.
+            My career began in the early 2000s as a software engineer, developing a deep appreciation for the mechanics of code, hardware, and scalable architecture. That academic and hands-on foundation in computer science established the first-principles thinking that still guides my work today.
           </p>
           <p>
-            The pivotal moment came at <strong>Foot Locker</strong>. Leading global teams and driving a 40% growth in digital revenue taught me that <em>code doesn't scale linearly—people do.</em> I shifted my focus from architecting systems to architecting organizations.
+            During my tenure at <strong>Foot Locker</strong>—leading engineering teams across Europe and ultimately serving as Director of Global Frontend Development &amp; Architecture in Chicago—my focus evolved. Scaling digital platforms revealed that technological growth is intrinsically tied to human systems: <em>code alone does not scale organizations; well-structured teams and clear technical strategy do.</em>
           </p>
           <p>
-            Today, as a <strong>Senior Technology Leader at Diconium</strong>, I operate at the intersection of commercial strategy and engineering excellence. I build environments where 120+ engineers can thrive, ensuring that technology isn't just a cost center, but the primary driver of business value.
+            Today, as <strong>Director of Digital Engineering &amp; Strategy at diconium</strong>, I operate at the intersection of commercial strategy, enterprise architecture, and organizational design. Leading large engineering units and driving global transformation programs with direct P&amp;L responsibility, I focus on turning complex technology portfolios into sustainable commercial value. In parallel, I actively invest in exploring the rapid evolution of artificial intelligence, examining how autonomous agents, generative tooling, and modern AI workflows fundamentally transform software engineering and product delivery.
           </p>
         </div>
       </div>
